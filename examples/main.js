@@ -23,6 +23,10 @@ const router = new VueRouter({
     mode: 'history',
     routes: [
         {
+            path: '/demo',
+            component: (resolve) => require(['./routers/demo.vue'], resolve)
+        },
+        {
             path: '/split',
             component: (resolve) => require(['./routers/split.vue'], resolve)
         },
