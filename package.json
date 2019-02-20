@@ -1,8 +1,8 @@
 {
     "name": "iview",
-    "version": "3.2.2",
+    "version": "1.0.0",
     "title": "iView",
-    "description": "based on iview. designed by kuanghui",
+    "description": "based on iview v3.2.2. designed by kuanghui",
     "homepage": "http://www.iviewui.com",
     "keywords": [
         "iview",
