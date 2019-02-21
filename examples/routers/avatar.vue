@@ -31,7 +31,7 @@
             </Badge>
         </div>
         <br><br><br>
-        <Avatar custom-icon="ivu-icon-ios-person" />
+        <Avatar custom-icon="kh-icon-ios-person" />
     </div>
 </template>
 <script>

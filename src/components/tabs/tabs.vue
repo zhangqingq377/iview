@@ -36,7 +36,7 @@
     import Emitter from '../../mixins/emitter';
     import elementResizeDetectorMaker from 'element-resize-detector';
 
-    const prefixCls = 'ivu-tabs';
+    const prefixCls = 'kh-tabs';
     const transitionTime = 300; // from CSS
 
     const getNextTab = (list, activeKey, direction, countDisabledAlso) => {

@@ -25,7 +25,7 @@
     import TransferDom from '../../directives/transfer-dom';
     import { oneOf, findComponentUpward } from '../../utils/assist';
 
-    const prefixCls = 'ivu-dropdown';
+    const prefixCls = 'kh-dropdown';
 
     export default {
         name: 'Dropdown',

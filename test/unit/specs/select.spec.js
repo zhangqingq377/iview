@@ -23,7 +23,7 @@ describe('Select.vue', () => {
         }
       });
       vm.$nextTick(() => {
-        const placeholderSpan = vm.$el.querySelector('.ivu-select-placeholder');
+        const placeholderSpan = vm.$el.querySelector('.kh-select-placeholder');
         expect(placeholderSpan.textContent).to.equal(placeholder);
         expect(placeholderSpan.style.display).to.not.equal('none');
         done();
@@ -46,11 +46,11 @@ describe('Select.vue', () => {
       });
       waitForIt(
           () => {
-              const selectedValueSpan = vm.$el.querySelector('.ivu-select-selected-value');
+              const selectedValueSpan = vm.$el.querySelector('.kh-select-selected-value');
               return selectedValueSpan && selectedValueSpan.textContent === 'Bar';
           },
           () => {
-              const selectedValueSpan = vm.$el.querySelector('.ivu-select-selected-value');
+              const selectedValueSpan = vm.$el.querySelector('.kh-select-selected-value');
               const {label, value} = vm.$children[0].values[0];
 
               expect(selectedValueSpan.textContent).to.equal('Bar');
@@ -77,7 +77,7 @@ describe('Select.vue', () => {
         }
       });
       vm.$nextTick(() => {
-        const selectedValueSpan = vm.$el.querySelector('.ivu-select-selected-value');
+        const selectedValueSpan = vm.$el.querySelector('.kh-select-selected-value');
         expect(selectedValueSpan.textContent).to.equal('< 100$');
         done();
       });
@@ -98,7 +98,7 @@ describe('Select.vue', () => {
         }
       });
       vm.$nextTick(() => {
-        const input = vm.$el.querySelector('.ivu-select-input');
+        const input = vm.$el.querySelector('.kh-select-input');
         expect(input.value).to.equal('< 100$');
         done();
       });
@@ -120,12 +120,12 @@ describe('Select.vue', () => {
       });
         waitForIt(
             () => {
-                const selectedValueSpan = vm.$el.querySelector('.ivu-select-selected-value');
+                const selectedValueSpan = vm.$el.querySelector('.kh-select-selected-value');
                 return selectedValueSpan && selectedValueSpan.textContent === 'Bar';
             },
             () => {
-                const placeholderSpan = vm.$el.querySelector('.ivu-select-placeholder');
-                const selectedValueSpan = vm.$el.querySelector('.ivu-select-selected-value');
+                const placeholderSpan = vm.$el.querySelector('.kh-select-placeholder');
+                const selectedValueSpan = vm.$el.querySelector('.kh-select-selected-value');
                 expect(placeholderSpan).to.equal(null);
                 expect(!!selectedValueSpan.style.display).to.not.equal('none');
                 expect(selectedValueSpan.textContent).to.equal('Bar');
@@ -143,10 +143,10 @@ describe('Select.vue', () => {
         </div>
 	  `);
       vm.$nextTick(() => {
-        const [defaultSelect, largeSelect, smallSelect] = [...vm.$el.querySelectorAll('.ivu-select')];
-        expect(defaultSelect.className).to.equal('ivu-select ivu-select-single ivu-select-default');
-        expect(largeSelect.classList.contains('ivu-select-large')).to.equal(true);
-        expect(smallSelect.classList.contains('ivu-select-small')).to.equal(true);
+        const [defaultSelect, largeSelect, smallSelect] = [...vm.$el.querySelectorAll('.kh-select')];
+        expect(defaultSelect.className).to.equal('kh-select kh-select-single kh-select-default');
+        expect(largeSelect.classList.contains('kh-select-large')).to.equal(true);
+        expect(smallSelect.classList.contains('kh-select-small')).to.equal(true);
         done();
       });
     });
@@ -175,7 +175,7 @@ describe('Select.vue', () => {
         return componentOptions && componentOptions.length > 0;
       };
       const callback = function() {
-        const renderedOptions = vm.$el.querySelectorAll('.ivu-select-dropdown-list li');
+        const renderedOptions = vm.$el.querySelectorAll('.kh-select-dropdown-list li');
         expect(renderedOptions.length).to.equal(laterOptions.length);
 
         const labels = [...renderedOptions].map(el => el.textContent).join('<>');
@@ -223,15 +223,15 @@ describe('Select.vue', () => {
 
           new Promise(resolve => {
               const condition = function() {
-                  const optionsA = SelectA.$el.querySelectorAll('.ivu-select-item');
-                  const optionsB = SelectB.$el.querySelectorAll('.ivu-select-item');
+                  const optionsA = SelectA.$el.querySelectorAll('.kh-select-item');
+                  const optionsB = SelectB.$el.querySelectorAll('.kh-select-item');
                   return optionsA.length > 0 && optionsB.length > 0;
               };
               waitForIt(condition, resolve);
           })
               .then(() => {
                   // click in A options
-                  const optionsA = SelectA.$el.querySelectorAll('.ivu-select-item');
+                  const optionsA = SelectA.$el.querySelectorAll('.kh-select-item');
                   optionsA[0].click();
                   return promissedTick(SelectA);
               })
@@ -241,7 +241,7 @@ describe('Select.vue', () => {
                   expect(SelectB.value.length).to.equal(0);
 
                   // click in B options
-                  const optionsB = SelectB.$el.querySelectorAll('.ivu-select-item');
+                  const optionsB = SelectB.$el.querySelectorAll('.kh-select-item');
                   optionsB[1].click();
                   optionsB[2].click();
                   return promissedTick(SelectB);
@@ -249,7 +249,7 @@ describe('Select.vue', () => {
               .then(() => {
                   // lets check the values!
                   const getSelections = component => {
-                      const tags = component.$el.querySelectorAll('.ivu-select-selection .ivu-tag');
+                      const tags = component.$el.querySelectorAll('.kh-select-selection .kh-tag');
                       return [...tags].map(el => el.textContent.trim()).join(',');
                   };
                   const selectAValue = getSelections(SelectA);
@@ -308,15 +308,15 @@ describe('Select.vue', () => {
 
           new Promise(resolve => {
               const condition = function() {
-                  const optionsA = SelectA.$el.querySelectorAll('.ivu-select-item');
-                  const optionsB = SelectB.$el.querySelectorAll('.ivu-select-item');
+                  const optionsA = SelectA.$el.querySelectorAll('.kh-select-item');
+                  const optionsB = SelectB.$el.querySelectorAll('.kh-select-item');
                   return optionsA.length > 0 && optionsB.length > 0;
               };
               waitForIt(condition, resolve);
           })
           .then(() => {
               // click in A options
-              const optionsA = SelectA.$el.querySelectorAll('.ivu-select-item');
+              const optionsA = SelectA.$el.querySelectorAll('.kh-select-item');
               optionsA[0].click();
               return promissedTick(SelectA);
           })
@@ -325,7 +325,7 @@ describe('Select.vue', () => {
               expect(onChangeValueA).to.equal(options[0].value);
 
               // click in B options
-              const optionsB = SelectB.$el.querySelectorAll('.ivu-select-item');
+              const optionsB = SelectB.$el.querySelectorAll('.kh-select-item');
               optionsB[2].click();
               return promissedTick(SelectB);
           })
@@ -363,10 +363,10 @@ describe('Select.vue', () => {
           Select.setQuery('i');
           vm.$nextTick(() => {
               const query = 'i';
-              const input = vm.$el.querySelector('.ivu-select-input');
+              const input = vm.$el.querySelector('.kh-select-input');
               expect(input.value).to.equal(query);
 
-              const renderedOptions = [...vm.$el.querySelectorAll('.ivu-select-item')].map(el => el.textContent);
+              const renderedOptions = [...vm.$el.querySelectorAll('.kh-select-item')].map(el => el.textContent);
               const filteredOptions = options.filter(option => JSON.stringify(option).includes(query)).map(({label}) => label);
               expect(JSON.stringify(renderedOptions)).to.equal(JSON.stringify(filteredOptions));
 
@@ -374,10 +374,10 @@ describe('Select.vue', () => {
               // setQuery(null) should clear the select
               Select.setQuery(null);
               vm.$nextTick(() => {
-                  const input = vm.$el.querySelector('.ivu-select-input');
+                  const input = vm.$el.querySelector('.kh-select-input');
                   expect(input.value).to.equal('');
 
-                  const renderedOptions = [...vm.$el.querySelectorAll('.ivu-select-item')].map(el => el.textContent);
+                  const renderedOptions = [...vm.$el.querySelectorAll('.kh-select-item')].map(el => el.textContent);
                   expect(JSON.stringify(renderedOptions)).to.equal(JSON.stringify(options.map(({label}) => label)));
                   done();
               });
@@ -449,7 +449,7 @@ describe('Select.vue', () => {
       };
       const callback = function() {
         const end = +new Date();
-        const renderedOptions = vm.$el.querySelectorAll('.ivu-select-dropdown-list li');
+        const renderedOptions = vm.$el.querySelectorAll('.kh-select-dropdown-list li');
         expect(renderedOptions.length).to.equal(manyLaterOptions.length);
         expect(end - start).to.be.not.above(1000);
         done();

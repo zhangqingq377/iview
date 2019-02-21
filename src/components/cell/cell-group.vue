@@ -1,5 +1,5 @@
 <template>
-    <div class="ivu-cell-group">
+    <div class="kh-cell-group">
         <slot></slot>
     </div>
 </template>

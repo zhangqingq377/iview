@@ -2,7 +2,7 @@
     <div :class="prefixCls" :style="styles"><slot></slot></div>
 </template>
 <script>
-    const prefixCls = 'ivu-carousel-item';
+    const prefixCls = 'kh-carousel-item';
 
     export default {
         componentName: 'carousel-item',

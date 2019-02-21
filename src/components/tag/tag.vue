@@ -15,7 +15,7 @@
 <script>
     import Icon from '../icon';
     import { oneOf } from '../../utils/assist';
-    const prefixCls = 'ivu-tag';
+    const prefixCls = 'kh-tag';
     const initColorList = ['default', 'primary', 'success', 'warning', 'error', 'blue', 'green', 'red', 'yellow', 'pink', 'magenta', 'volcano', 'orange', 'gold', 'lime', 'cyan', 'geekblue', 'purple'];
     const colorList = ['pink', 'magenta', 'volcano', 'orange', 'gold', 'lime', 'cyan', 'geekblue', 'purple'];
 

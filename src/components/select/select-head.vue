@@ -1,7 +1,7 @@
 <template>
     <div @click="onHeaderClick">
-        <div class="ivu-tag ivu-tag-checked" v-for="item in selectedMultiple">
-            <span class="ivu-tag-text">{{ item.label }}</span>
+        <div class="kh-tag kh-tag-checked" v-for="item in selectedMultiple">
+            <span class="kh-tag-text">{{ item.label }}</span>
             <Icon type="ios-close" @click.native.stop="removeTag(item)"></Icon>
         </div>
         <span
@@ -34,7 +34,7 @@
     import Emitter from '../../mixins/emitter';
     import Locale from '../../mixins/locale';
 
-    const prefixCls = 'ivu-select';
+    const prefixCls = 'kh-select';
 
     export default {
         name: 'iSelectHead',

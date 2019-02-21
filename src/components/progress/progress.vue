@@ -21,7 +21,7 @@
     import Icon from '../icon';
     import { oneOf } from '../../utils/assist';
 
-    const prefixCls = 'ivu-progress';
+    const prefixCls = 'kh-progress';
 
     export default {
         name: 'Progress',

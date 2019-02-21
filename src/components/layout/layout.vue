@@ -2,7 +2,7 @@
      <div :class="wrapClasses"><slot></slot></div>
 </template>
 <script>
-    const prefixCls = 'ivu-layout';
+    const prefixCls = 'kh-layout';
 
     export default {
         name: 'Layout',
@@ -24,7 +24,7 @@
         methods: {
             findSider () {
                 return this.$children.some(child => {
-                    return child.$options.name === 'Sider'; 
+                    return child.$options.name === 'Sider';
                 });
             }
         },

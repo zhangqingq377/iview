@@ -55,11 +55,11 @@ describe('Button.vue', () => {
     });
     vm.$el.click();
     vm.$nextTick(() => {
-      expect(vm.$el.classList.contains('ivu-btn-loading')).to.equal(true);
-      const $icons = vm.$el.querySelectorAll('.ivu-icon');
+      expect(vm.$el.classList.contains('kh-btn-loading')).to.equal(true);
+      const $icons = vm.$el.querySelectorAll('.kh-icon');
       expect($icons.length).to.equal(1);
-      expect($icons[0].classList.contains('ivu-load-loop')).to.equal(true);
-      expect($icons[0].classList.contains('ivu-icon-ios-loading')).to.equal(true);
+      expect($icons[0].classList.contains('kh-load-loop')).to.equal(true);
+      expect($icons[0].classList.contains('kh-icon-ios-loading')).to.equal(true);
       done();
     });
   });

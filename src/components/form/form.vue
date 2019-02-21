@@ -4,7 +4,7 @@
 <script>
     import { oneOf } from '../../utils/assist';
 
-    const prefixCls = 'ivu-form';
+    const prefixCls = 'kh-form';
 
     export default {
         name: 'iForm',

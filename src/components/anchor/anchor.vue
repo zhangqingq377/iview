@@ -22,7 +22,7 @@ export default {
     },
     data () {
         return {
-            prefix: 'ivu-anchor',
+            prefix: 'kh-anchor',
             isAffixed: false, // current affixed state
             inkTop: 0,
             animating: false, // if is scrolling now

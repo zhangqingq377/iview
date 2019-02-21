@@ -1,5 +1,5 @@
-const prefixCls = 'ivu-picker-panel';
-const datePrefixCls = 'ivu-date-picker';
+const prefixCls = 'kh-picker-panel';
+const datePrefixCls = 'kh-date-picker';
 
 export default {
     props: {

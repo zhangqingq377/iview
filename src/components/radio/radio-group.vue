@@ -7,11 +7,11 @@
     import { oneOf, findComponentsDownward } from '../../utils/assist';
     import Emitter from '../../mixins/emitter';
 
-    const prefixCls = 'ivu-radio-group';
+    const prefixCls = 'kh-radio-group';
 
     let seed = 0;
     const now = Date.now();
-    const getUuid = () => `ivuRadioGroup_${now}_${seed++}`;
+    const getUuid = () => `khRadioGroup_${now}_${seed++}`;
 
     export default {
         name: 'RadioGroup',
@@ -55,7 +55,7 @@
                     `${prefixCls}`,
                     {
                         [`${prefixCls}-${this.size}`]: !!this.size,
-                        [`ivu-radio-${this.size}`]: !!this.size,
+                        [`kh-radio-${this.size}`]: !!this.size,
                         [`${prefixCls}-${this.type}`]: !!this.type,
                         [`${prefixCls}-vertical`]: this.vertical
                     }

@@ -1,10 +1,10 @@
 export default {
     data() {
         return {
-            prefixCls: 'ivu-color-picker',
-            inputPrefixCls: 'ivu-input',
-            iconPrefixCls: 'ivu-icon',
-            transferPrefixCls: 'ivu-transfer',
+            prefixCls: 'kh-color-picker',
+            inputPrefixCls: 'kh-input',
+            iconPrefixCls: 'kh-icon',
+            transferPrefixCls: 'kh-transfer',
         };
     },
 };

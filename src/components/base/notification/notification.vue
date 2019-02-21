@@ -23,12 +23,12 @@
 
     import { transferIndex, transferIncrease } from '../../../utils/transfer-queue';
 
-    const prefixCls = 'ivu-notification';
+    const prefixCls = 'kh-notification';
     let seed = 0;
     const now = Date.now();
 
     function getUuid () {
-        return 'ivuNotification_' + now + '_' + (seed++);
+        return 'khNotification_' + now + '_' + (seed++);
     }
 
     export default {

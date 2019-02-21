@@ -19,8 +19,8 @@
     import Emitter from '../../mixins/emitter';
     import { oneOf } from '../../utils/assist';
 
-    const prefixCls = 'ivu-steps';
-    const iconPrefixCls = 'ivu-icon';
+    const prefixCls = 'kh-steps';
+    const iconPrefixCls = 'kh-icon';
 
     export default {
         name: 'Step',

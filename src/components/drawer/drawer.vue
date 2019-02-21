@@ -7,7 +7,7 @@
             <transition :name="'move-' + placement">
                 <div :class="classes" :style="mainStyles" v-show="visible">
                     <div :class="contentClasses" ref="content">
-                        <a class="ivu-drawer-close" v-if="closable" @click="close">
+                        <a class="kh-drawer-close" v-if="closable" @click="close">
                             <slot name="close">
                                 <Icon type="ios-close"></Icon>
                             </slot>
@@ -27,7 +27,7 @@
     import Emitter from '../../mixins/emitter';
     import ScrollbarMixins from '../modal/mixins-scrollbar';
 
-    const prefixCls = 'ivu-drawer';
+    const prefixCls = 'kh-drawer';
 
     export default {
         name: 'Drawer',
@@ -164,7 +164,7 @@
                 }
             },
             handleWrapClick (event) {
-                // use indexOf,do not use === ,because ivu-modal-wrap can have other custom className
+                // use indexOf,do not use === ,because kh-modal-wrap can have other custom className
                 const className = event.target.getAttribute('class');
                 if (className && className.indexOf(`${prefixCls}-wrap`) > -1) this.handleMask();
             },

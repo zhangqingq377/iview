@@ -18,7 +18,7 @@
     import { findComponentUpward, oneOf } from '../../utils/assist';
     import Emitter from '../../mixins/emitter';
 
-    const prefixCls = 'ivu-radio';
+    const prefixCls = 'kh-radio';
 
     export default {
         name: 'Radio',
@@ -109,7 +109,7 @@
                     }
                     /* eslint-enable no-console */
                 } else {
-                    this.groupName = this.parent.name; 
+                    this.groupName = this.parent.name;
                 }
             }
 

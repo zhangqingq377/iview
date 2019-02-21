@@ -17,7 +17,7 @@
     import Emitter from '../../mixins/emitter';
     import Locale from '../../mixins/locale';
 
-    const prefixCls = 'ivu-tree';
+    const prefixCls = 'kh-tree';
 
     export default {
         name: 'Tree',

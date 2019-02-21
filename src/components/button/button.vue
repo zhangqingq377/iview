@@ -1,6 +1,6 @@
 <template>
     <component :is="tagName" :class="classes" :disabled="disabled" @click="handleClickLink" v-bind="tagProps">
-        <Icon class="ivu-load-loop" type="ios-loading" v-if="loading"></Icon>
+        <Icon class="kh-load-loop" type="ios-loading" v-if="loading"></Icon>
         <Icon :type="icon" :custom="customIcon" v-if="(icon || customIcon) && !loading"></Icon>
         <span v-if="showSlot" ref="slot"><slot></slot></span>
     </component>
@@ -10,7 +10,7 @@
     import { oneOf } from '../../utils/assist';
     import mixinsLink from '../../mixins/link';
 
-    const prefixCls = 'ivu-btn';
+    const prefixCls = 'kh-btn';
 
     export default {
         name: 'Button',

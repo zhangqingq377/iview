@@ -4,7 +4,7 @@
         align-items: center;
         justify-content: center;
 
-    .ivu-modal{
+    .kh-modal{
         top: 0;
     }
     }

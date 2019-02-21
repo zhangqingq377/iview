@@ -5,7 +5,7 @@
     flex-direction: column;
     flex: auto;
     background: @layout-body-background;
-    
+
     &&-has-sider {
         flex-direction: row;
         > .@{layout-prefix-cls},
@@ -54,7 +54,7 @@
             background: @layout-sider-background;
             z-index: 1000;
             transition: all .2s @ease-in-out;
-            .ivu-icon {
+            .kh-icon {
                 font-size: 16px;
             }
             >* {
@@ -86,7 +86,7 @@
                 border-radius: 0 @border-radius-base @border-radius-base 0;
                 cursor: pointer;
                 transition: background .3s ease;
-        
+
                 &:hover {
                   background: tint(@layout-sider-background, 10%);
                 }

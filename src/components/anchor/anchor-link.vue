@@ -20,7 +20,7 @@ export default {
     },
     data () {
         return {
-            prefix: 'ivu-anchor-link'
+            prefix: 'kh-anchor-link'
         };
     },
     computed: {

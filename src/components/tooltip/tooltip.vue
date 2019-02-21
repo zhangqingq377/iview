@@ -27,7 +27,7 @@
     import { oneOf } from '../../utils/assist';
     import { transferIndex, transferIncrease } from '../../utils/transfer-queue';
 
-    const prefixCls = 'ivu-tooltip';
+    const prefixCls = 'kh-tooltip';
 
     export default {
         name: 'Tooltip',

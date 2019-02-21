@@ -21,7 +21,7 @@
 </template>
 <script>
     import mixinsLink from '../../mixins/link';
-    const prefixCls = 'ivu-breadcrumb-item';
+    const prefixCls = 'kh-breadcrumb-item';
 
     export default {
         name: 'BreadcrumbItem',

@@ -87,7 +87,7 @@
     import Emitter from '../../mixins/emitter';
     import elementResizeDetectorMaker from 'element-resize-detector';
 
-    const prefixCls = 'ivu-slider';
+    const prefixCls = 'kh-slider';
 
     export default {
         name: 'Slider',

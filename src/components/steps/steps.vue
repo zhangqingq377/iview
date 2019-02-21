@@ -6,7 +6,7 @@
 <script>
     import { oneOf } from '../../utils/assist';
 
-    const prefixCls = 'ivu-steps';
+    const prefixCls = 'kh-steps';
 
     function debounce(fn) {
         let waiting;

@@ -32,7 +32,7 @@
 
     import Icon from '../icon/icon.vue';
 
-    const prefixCls = 'ivu-rate';
+    const prefixCls = 'kh-rate';
 
     export default {
         name: 'Rate',
@@ -99,9 +99,9 @@
             },
             iconClasses () {
                 return [
-                    'ivu-icon',
+                    'kh-icon',
                     {
-                        [`ivu-icon-${this.icon}`]: this.icon !== '',
+                        [`kh-icon-${this.icon}`]: this.icon !== '',
                         [`${this.customIcon}`]: this.customIcon !== '',
                     }
                 ];
@@ -135,7 +135,7 @@
                 }
 
                 return [
-                    {   
+                    {
                         [`${prefixCls}-star`]: !this.showCharacter,
                         [`${prefixCls}-star-chart`]: this.showCharacter,
                         [`${prefixCls}-star-full`]: (!isLast && full) || (isLast && !this.isHalf),

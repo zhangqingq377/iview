@@ -35,8 +35,8 @@
 
     import { initTimeDate } from '../../util';
 
-    const prefixCls = 'ivu-picker-panel';
-    const timePrefixCls = 'ivu-time-picker';
+    const prefixCls = 'kh-picker-panel';
+    const timePrefixCls = 'kh-time-picker';
 
     const capitalize = (str) => str[0].toUpperCase() + str.slice(1);
     const mergeDateHMS = (date, hours, minutes, seconds) => {

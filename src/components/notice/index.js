@@ -1,8 +1,8 @@
 import Notification from '../base/notification';
 
-const prefixCls = 'ivu-notice';
-const iconPrefixCls = 'ivu-icon';
-const prefixKey = 'ivu_notice_key_';
+const prefixCls = 'kh-notice';
+const iconPrefixCls = 'kh-icon';
+const prefixKey = 'kh_notice_key_';
 
 let top = 24;
 let defaultDuration = 4.5;
@@ -121,6 +121,6 @@ export default {
     destroy () {
         let instance = getNoticeInstance();
         noticeInstance = null;
-        instance.destroy('ivu-notice');
+        instance.destroy('kh-notice');
     }
 };

@@ -86,8 +86,8 @@
     import {findComponentsDownward} from '../../utils/assist';
     import Emitter from '../../mixins/emitter';
 
-    const prefixCls = 'ivu-date-picker';
-    const pickerPrefixCls = 'ivu-picker';
+    const prefixCls = 'kh-date-picker';
+    const pickerPrefixCls = 'kh-picker';
 
     const isEmptyArray = val => val.reduce((isEmpty, str) => isEmpty && !str || (typeof str === 'string' && str.trim() === ''), true);
     const keyValueMapper = {
@@ -105,7 +105,7 @@
     };
 
     const pulseElement = (el) => {
-        const pulseClass = 'ivu-date-picker-btn-pulse';
+        const pulseClass = 'kh-date-picker-btn-pulse';
         el.classList.add(pulseClass);
         setTimeout(() => el.classList.remove(pulseClass), 200);
     };
@@ -498,7 +498,7 @@
                     const double = direction.match(/up|down/) ? '-double' : '';
 
                     // pulse button
-                    const button = this.$refs.drop.$el.querySelector(`.ivu-date-picker-${position}-btn-arrow${double}`);
+                    const button = this.$refs.drop.$el.querySelector(`.kh-date-picker-${position}-btn-arrow${double}`);
                     if (button) pulseElement(button);
                     return;
                 }

@@ -4,7 +4,7 @@
             <li>
                 <span :class="arrowClasses" @click="handleExpand">
                     <Icon v-if="showArrow" type="ios-arrow-forward"></Icon>
-                    <Icon v-if="showLoading" type="ios-loading" class="ivu-load-loop"></Icon>
+                    <Icon v-if="showLoading" type="ios-loading" class="kh-load-loop"></Icon>
                 </span>
                 <Checkbox
                         v-if="showCheckbox"
@@ -36,7 +36,7 @@
     import Emitter from '../../mixins/emitter';
     import { findComponentUpward } from '../../utils/assist';
 
-    const prefixCls = 'ivu-tree';
+    const prefixCls = 'kh-tree';
 
     export default {
         name: 'TreeNode',

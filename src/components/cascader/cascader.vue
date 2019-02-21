@@ -64,8 +64,8 @@
     import Emitter from '../../mixins/emitter';
     import Locale from '../../mixins/locale';
 
-    const prefixCls = 'ivu-cascader';
-    const selectPrefixCls = 'ivu-select';
+    const prefixCls = 'kh-cascader';
+    const selectPrefixCls = 'kh-select';
 
     export default {
         name: 'Cascader',
