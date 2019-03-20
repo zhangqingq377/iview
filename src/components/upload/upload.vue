@@ -193,8 +193,26 @@
                 });
             },
             upload (file) {
-                if (!this.beforeUpload) {
+                if (!this.beforeUpload && !this.format.length && !this.maxSize) {
                     return this.post(file);
+                }
+
+                // check format
+                if (this.format.length) {
+                    const _file_format = file.name.split('.').pop().toLocaleLowerCase();
+                    const checked = this.format.some(item => item.toLocaleLowerCase() === _file_format);
+                    if (!checked) {
+                        this.onFormatError(file, this.fileList);
+                        return false;
+                    }
+                }
+
+                // check maxSize
+                if (this.maxSize) {
+                    if (file.size > this.maxSize * 1024) {
+                        this.onExceededSize(file, this.fileList);
+                        return false;
+                    }
                 }
 
                 const before = this.beforeUpload(file);
@@ -215,23 +233,6 @@
                 }
             },
             post (file) {
-                // check format
-                if (this.format.length) {
-                    const _file_format = file.name.split('.').pop().toLocaleLowerCase();
-                    const checked = this.format.some(item => item.toLocaleLowerCase() === _file_format);
-                    if (!checked) {
-                        this.onFormatError(file, this.fileList);
-                        return false;
-                    }
-                }
-
-                // check maxSize
-                if (this.maxSize) {
-                    if (file.size > this.maxSize * 1024) {
-                        this.onExceededSize(file, this.fileList);
-                        return false;
-                    }
-                }
 
                 this.handleStart(file);
                 let formData = new FormData();
