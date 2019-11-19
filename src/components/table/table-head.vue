@@ -7,10 +7,14 @@
         <thead>
             <tr v-for="(cols, rowIndex) in headRows">
                 <th
+                    class="v-table-title-cell"
                     v-for="(column, index) in cols"
                     :colspan="column.colSpan"
                     :rowspan="column.rowSpan"
-                    :class="alignCls(column)">
+                    :class="alignCls(column)"
+                    @mousemove.stop="handleTitleMouseMove($event,column)"
+                    @mousedown.stop="handleTitleMouseDown($event)"
+                    @mouseout.stop="handleTitleMouseOut()">
                     <div :class="cellClasses(column)">
                         <template v-if="column.type === 'expand'">
                             <span v-if="!column.renderHeader">{{ column.title || '' }}</span>
@@ -65,6 +69,8 @@
                 <th v-if="$parent.showVerticalScrollBar && rowIndex===0" :class='scrollBarCellClass()' :rowspan="headRows.length"></th>
             </tr>
         </thead>
+        <!--列拖动时的线条-->
+        <div v-show="isDragging" class="v-table-drag-line"></div>
     </table>
 </template>
 <script>
@@ -75,10 +81,12 @@
     import renderHeader from './header';
     import Mixin from './mixin';
     import Locale from '../../mixins/locale';
+    import dragWidthMixin from './drag-width-mixin.js'
+
 
     export default {
         name: 'TableHead',
-        mixins: [ Mixin, Locale ],
+        mixins: [ Mixin, Locale, dragWidthMixin ],
         components: { CheckboxGroup, Checkbox, Poptip, iButton, renderHeader },
         props: {
             prefixCls: String,
@@ -89,6 +97,14 @@
             columnsWidth: Object,
             fixed: {
                 type: [Boolean, String],
+                default: false
+            },
+            border: {
+                type: Boolean,
+                default: false
+            },
+            columnWidthDrag: {
+                type: Boolean,
                 default: false
             },
             columnRows: Array,

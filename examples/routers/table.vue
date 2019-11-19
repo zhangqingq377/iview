@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Table ref="currentRowTable" :columns="columns3" :data="data1"></Table>
+        <Table ref="currentRowTable" :columns="columns3" border :data="data1" column-width-drag></Table>
         <Button @click="handleClearCurrentRow">Clear</Button>
     </div>
 </template>

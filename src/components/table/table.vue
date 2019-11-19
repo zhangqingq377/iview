@@ -10,6 +10,8 @@
                     :column-rows="columnRows"
                     :obj-data="objData"
                     :columns-width="columnsWidth"
+                    :border="border"
+                    :column-width-drag="columnWidthDrag"
                     :data="rebuildData"></table-head>
             </div>
             <div :class="[prefixCls + '-body']" :style="bodyStyle" ref="body" @scroll="handleBodyScroll"
@@ -48,6 +50,8 @@
                         :fixed-column-rows="leftFixedColumnRows"
                         :obj-data="objData"
                         :columns-width="columnsWidth"
+                        :border="border"
+                        :column-width-drag="columnWidthDrag"
                         :data="rebuildData"></table-head>
                 </div>
                 <div :class="[prefixCls + '-fixed-body']" :style="fixedBodyStyle" ref="fixedBody" @mousewheel="handleFixedMousewheel" @DOMMouseScroll="handleFixedMousewheel">
@@ -72,6 +76,8 @@
                         :fixed-column-rows="rightFixedColumnRows"
                         :obj-data="objData"
                         :columns-width="columnsWidth"
+                        :border="border"
+                        :column-width-drag="columnWidthDrag"
                         :data="rebuildData"></table-head>
                 </div>
                 <div :class="[prefixCls + '-fixed-body']" :style="fixedBodyStyle" ref="fixedRightBody" @mousewheel="handleFixedMousewheel" @DOMMouseScroll="handleFixedMousewheel">
@@ -183,7 +189,11 @@
             loading: {
                 type: Boolean,
                 default: false
-            }
+            },
+            columnWidthDrag: {
+                type: Boolean,
+                default: false
+            },
         },
         data () {
             const colsWithId = this.makeColumnsId(this.columns);
