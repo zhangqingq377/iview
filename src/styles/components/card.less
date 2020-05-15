@@ -1,7 +1,7 @@
 @card-prefix-cls: ~"@{css-prefix}card";
 
 .@{card-prefix-cls}{
-    background: #fff;
+    background: @background-color-base;
     border-radius: @border-radius-small;
     font-size: @font-size-base;
     position: relative;
@@ -10,7 +10,6 @@
 
     &-bordered {
         border: 1px solid @border-color-base;
-        border-color: @border-color-split;
     }
 
     &-shadow{
@@ -19,7 +18,7 @@
 
     &:hover {
         box-shadow: @shadow-base;
-        border-color: #eee;
+        border-color: @border-color-split;
     }
     &&-dis-hover:hover{
         box-shadow: none;
