@@ -206,11 +206,11 @@
     &:hover
     //&:focus
     {
-        .button-color(tint(@primary-color, 20%); white; tint(@primary-color, 20%));
+        .button-color(tint(@primary-color, 20%); @btn-default-bg; tint(@primary-color, 20%));
     }
     &:active,
     &.active {
-        .button-color(shade(@primary-color, 5%); white; shade(@primary-color, 5%));
+        .button-color(shade(@primary-color, 5%); @btn-default-bg; shade(@primary-color, 5%));
     }
     .active-btn-color(@primary-color);
 }

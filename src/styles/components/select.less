@@ -69,6 +69,7 @@
 
     &-single &-selection{
         height: @input-height-base;
+        overflow: hidden;
         position: relative;
 
         .@{select-prefix-cls}-placeholder{
@@ -158,7 +159,7 @@
         border: none;
         box-sizing: border-box;
         color: @input-color;
-        background-color: transparent;
+        background-color: @input-bg;
         position: relative;
         cursor: pointer;
         .placeholder();
