@@ -178,10 +178,16 @@
                 type: Object
             },
             noDataText: {
-                type: String
+                type: String,
+                default () {
+                    return t('i.table.noDataText');
+                }
             },
             noFilteredDataText: {
-                type: String
+                type: String,
+                default () {
+                    return t('i.table.noFilteredDataText');
+                }
             },
             disabledHover: {
                 type: Boolean
@@ -243,7 +249,8 @@
                     {
                         [`${prefixCls}-hide`]: !this.ready,
                         [`${prefixCls}-with-header`]: this.showSlotHeader,
-                        [`${prefixCls}-with-footer`]: this.showSlotFooter
+                        [`${prefixCls}-with-footer`]: this.showSlotFooter,
+                        [`${prefixCls}-with-border`]: this.border
                     }
                 ];
             },
