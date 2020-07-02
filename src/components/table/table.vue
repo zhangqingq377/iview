@@ -178,10 +178,16 @@
                 type: Object
             },
             noDataText: {
-                type: String
+                type: String,
+                default () {
+                    return t('i.table.noDataText');
+                }
             },
             noFilteredDataText: {
-                type: String
+                type: String,
+                default () {
+                    return t('i.table.noFilteredDataText');
+                }
             },
             disabledHover: {
                 type: Boolean
