@@ -69,4 +69,8 @@ export declare interface Col extends Vue {
    * ≥1200px 响应式栅格，可为栅格数或一个包含其他属性的对象
    */
   lg?: number | object;
+  /**
+   * ≥1600px 响应式栅格，可为栅格数或一个包含其他属性的对象
+   */
+  xl?: number | object;
 }
