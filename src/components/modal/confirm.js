@@ -1,137 +1,62 @@
 import Vue from 'vue';
 import Modal from './modal.vue';
-import Button from '../button/button.vue';
-import Locale from '../../mixins/locale';
+import Icon from '../icon/icon.vue';
+import iButton from '../button/button.vue';
+import { camelcaseToHyphen } from '../../utils/assist';
+import { t } from '../../locale';
 
 const prefixCls = 'kh-modal-confirm';
 
 Modal.newInstance = properties => {
     const _props = properties || {};
 
-    const Instance = new Vue({
-        mixins: [ Locale ],
-        data: Object.assign({}, _props, {
+    let props = '';
+    Object.keys(_props).forEach(prop => {
+        props += ' :' + camelcaseToHyphen(prop) + '=' + prop;
+    });
+
+    const div = document.createElement('div');
+    div.innerHTML = `
+        <Modal${props} :visible.sync="visible" :width="width" :scrollable.sync="scrollable">
+            <div class="${prefixCls}">
+                <div class="${prefixCls}-head">
+                    <div class="${prefixCls}-head-title">{{{ title }}}</div>
+                </div>
+                <div class="${prefixCls}-body">
+                    <div :class="iconTypeCls"><i :class="iconNameCls"></i></div>
+                    {{{ body }}}
+                </div>
+                <div class="${prefixCls}-footer">
+                    <i-button type="text" size="large" v-if="showCancel" @click="cancel">{{ cancelText }}</i-button>
+                    <i-button type="primary" size="large" :loading="buttonLoading" @click="ok">{{ okText }}</i-button>
+                </div>
+            </div>
+        </Modal>
+    `;
+    document.body.appendChild(div);
+
+    const modal = new Vue({
+        el: div,
+        components: { Modal, iButton, Icon },
+        data: Object.assign(_props, {
             visible: false,
             width: 416,
             title: '',
             body: '',
             iconType: '',
             iconName: '',
-            okText: undefined,
-            cancelText: undefined,
+            okText: t('i.modal.okText'),
+            cancelText: t('i.modal.cancelText'),
             showCancel: false,
             loading: false,
             buttonLoading: false,
-            scrollable: false,
-            closable: false
+            scrollable: false
         }),
-        render (h) {
-            let footerVNodes = [];
-            if (this.showCancel) {
-                footerVNodes.push(h(Button, {
-                    props: {
-                        type: 'text',
-                        size: 'large'
-                    },
-                    on: {
-                        click: this.cancel
-                    }
-                }, this.localeCancelText));
-            }
-            footerVNodes.push(h(Button, {
-                props: {
-                    type: 'primary',
-                    size: 'large',
-                    loading: this.buttonLoading
-                },
-                on: {
-                    click: this.ok
-                }
-            }, this.localeOkText));
-
-            // render content
-            let body_render;
-            if (this.render) {
-                body_render = h('div', {
-                    attrs: {
-                        class: `${prefixCls}-body ${prefixCls}-body-render`
-                    }
-                }, [this.render(h)]);
-            } else {
-                body_render = h('div', {
-                    attrs: {
-                        class: `${prefixCls}-body`
-                    }
-                }, [
-                    h('div', {
-                        domProps: {
-                            innerHTML: this.body
-                        }
-                    })
-                ]);
-            }
-
-            // when render with no title, hide head
-            let head_render;
-            if (this.title) {
-                head_render = h('div', {
-                    attrs: {
-                        class: `${prefixCls}-head`
-                    }
-                }, [
-                    h('div', {
-                        class: this.iconTypeCls
-                    }, [
-                        h('i', {
-                            class: this.iconNameCls
-                        })
-                    ]),
-                    h('div', {
-                        attrs: {
-                            class: `${prefixCls}-head-title`
-                        },
-                        domProps: {
-                            innerHTML: this.title
-                        }
-                    })
-                ]);
-            }
-
-            return h(Modal, {
-                props: Object.assign({}, _props, {
-                    width: this.width,
-                    scrollable: this.scrollable,
-                    closable: this.closable
-                }),
-                domProps: {
-                    value: this.visible
-                },
-                on: {
-                    input: (status) => {
-                        this.visible = status;
-                    }
-                }
-            }, [
-                h('div', {
-                    attrs: {
-                        class: prefixCls
-                    }
-                }, [
-                    head_render,
-                    body_render,
-                    h('div', {
-                        attrs: {
-                            class: `${prefixCls}-footer`
-                        }
-                    }, footerVNodes)
-                ])
-            ]);
-        },
         computed: {
             iconTypeCls () {
                 return [
-                    `${prefixCls}-head-icon`,
-                    `${prefixCls}-head-icon-${this.iconType}`
+                    `${prefixCls}-body-icon`,
+                    `${prefixCls}-body-icon-${this.iconType}`
                 ];
             },
             iconNameCls () {
@@ -139,25 +64,11 @@ Modal.newInstance = properties => {
                     'kh-icon',
                     `kh-icon-${this.iconName}`
                 ];
-            },
-            localeOkText () {
-                if (this.okText) {
-                    return this.okText;
-                } else {
-                    return this.t('i.modal.okText');
-                }
-            },
-            localeCancelText () {
-                if (this.cancelText) {
-                    return this.cancelText;
-                } else {
-                    return this.t('i.modal.cancelText');
-                }
             }
         },
         methods: {
             cancel () {
-                this.$children[0].visible = false;
+                this.visible = false;
                 this.buttonLoading = false;
                 this.onCancel();
                 this.remove();
@@ -166,7 +77,7 @@ Modal.newInstance = properties => {
                 if (this.loading) {
                     this.buttonLoading = true;
                 } else {
-                    this.$children[0].visible = false;
+                    this.visible = false;
                     this.remove();
                 }
                 this.onOk();
@@ -178,18 +89,14 @@ Modal.newInstance = properties => {
             },
             destroy () {
                 this.$destroy();
-                document.body.removeChild(this.$el);
+                document.body.removeChild(div);
                 this.onRemove();
             },
             onOk () {},
             onCancel () {},
             onRemove () {}
         }
-    });
-
-    const component = Instance.$mount();
-    document.body.appendChild(component.$el);
-    const modal = Instance.$children[0];
+    }).$children[0];
 
     return {
         show (props) {
@@ -198,28 +105,24 @@ Modal.newInstance = properties => {
 
             switch (props.icon) {
                 case 'info':
-                    modal.$parent.iconName = 'ios-information-circle';
+                    modal.$parent.iconName = 'information-circled';
                     break;
                 case 'success':
-                    modal.$parent.iconName = 'ios-checkmark-circle';
+                    modal.$parent.iconName = 'checkmark-circled';
                     break;
                 case 'warning':
-                    modal.$parent.iconName = 'ios-alert';
+                    modal.$parent.iconName = 'android-alert';
                     break;
                 case 'error':
-                    modal.$parent.iconName = 'ios-close-circle';
+                    modal.$parent.iconName = 'close-circled';
                     break;
                 case 'confirm':
-                    modal.$parent.iconName = 'ios-help-circle';
+                    modal.$parent.iconName = 'help-circled';
                     break;
             }
 
             if ('width' in props) {
                 modal.$parent.width = props.width;
-            }
-
-            if ('closable' in props) {
-                modal.$parent.closable = props.closable;
             }
 
             if ('title' in props) {
