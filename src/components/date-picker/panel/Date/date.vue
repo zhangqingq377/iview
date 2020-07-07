@@ -10,24 +10,24 @@
             <div :class="[datePrefixCls + '-header']" v-show="currentView !== 'time'">
                 <span
                     :class="iconBtnCls('prev', '-double')"
-                    @click="changeYear(-1)"><Icon type="ios-arrow-back"></Icon></span>
+                    @click="changeYear(-1)"><Icon type="ios-arrow-left"></Icon></span>
                 <span
                     v-if="pickerTable === 'date-table'"
                     :class="iconBtnCls('prev')"
                     @click="changeMonth(-1)"
-                    v-show="currentView === 'date'"><Icon type="ios-arrow-back"></Icon></span>
+                    v-show="currentView === 'date'"><Icon type="ios-arrow-left"></Icon></span>
                 <date-panel-label
                     :date-panel-label="datePanelLabel"
                     :current-view="pickerTable.split('-').shift()"
                     :date-prefix-cls="datePrefixCls"></date-panel-label>
                 <span
                     :class="iconBtnCls('next', '-double')"
-                    @click="changeYear(+1)"><Icon type="ios-arrow-forward"></Icon></span>
+                    @click="changeYear(+1)"><Icon type="ios-arrow-right"></Icon></span>
                 <span
                     v-if="pickerTable === 'date-table'"
                     :class="iconBtnCls('next')"
                     @click="changeMonth(+1)"
-                    v-show="currentView === 'date'"><Icon type="ios-arrow-forward"></Icon></span>
+                    v-show="currentView === 'date'"><Icon type="ios-arrow-right"></Icon></span>
             </div>
             <div :class="[prefixCls + '-content']">
                 <component
@@ -150,8 +150,7 @@
         watch: {
             value (newVal) {
                 this.dates = newVal;
-                const panelDate = this.multiple ? this.dates[this.dates.length - 1] : (this.startDate || this.dates[0]);
-                this.panelDate = panelDate || new Date();
+                this.panelDate = this.startDate || (this.multiple ? this.dates[this.dates.length - 1] : this.dates[0]) || new Date();
             },
             currentView (currentView) {
                 this.$emit('on-selection-mode-change', currentView);
@@ -171,7 +170,7 @@
                 const isDifferentYear = date.getFullYear() !== this.panelDate.getFullYear();
                 const isDifferentMonth = isDifferentYear || date.getMonth() !== this.panelDate.getMonth();
                 if (isDifferentYear || isDifferentMonth){
-                    if (!this.multiple) this.panelDate = date;
+                    this.panelDate = date;
                 }
             }
         },
