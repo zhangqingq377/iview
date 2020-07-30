@@ -161,7 +161,7 @@
                 leftPickerTable: `${this.selectionMode}-table`,
                 rightPickerTable: `${this.selectionMode}-table`,
                 leftPanelDate: leftPanelDate,
-                rightPanelDate: new Date(leftPanelDate.getFullYear(), leftPanelDate.getMonth() + 1, 1)
+                rightPanelDate: new Date(leftPanelDate.getFullYear(), leftPanelDate.getMonth() + 1, leftPanelDate.getDate())
             };
         },
         computed: {
@@ -260,9 +260,8 @@
             },
             setPanelDates(leftPanelDate){
                 this.leftPanelDate = leftPanelDate;
-                const rightPanelDate = new Date(leftPanelDate.getFullYear(), leftPanelDate.getMonth() + 1, 1);
-                const splitRightPanelDate = this.dates[1]? this.dates[1].getTime() : this.dates[1];
-                this.rightPanelDate = this.splitPanels ? new Date(Math.max(splitRightPanelDate, rightPanelDate.getTime())) : rightPanelDate;
+                const rightPanelDate = new Date(leftPanelDate.getFullYear(), leftPanelDate.getMonth() + 1, leftPanelDate.getDate());
+                this.rightPanelDate = this.splitPanels ? new Date(Math.max(this.dates[1], rightPanelDate)) : rightPanelDate;
             },
             panelLabelConfig (direction) {
                 const locale = this.t('i.locale');
@@ -313,18 +312,9 @@
                 } else {
                     // keep the panels together
                     const otherPanel = panel === 'left' ? 'right' : 'left';
-                    const currentDate = this[`${otherPanel}PanelDate`];
-                    const temp = new Date(currentDate);
-
-                    if (type === 'Month') {
-                        const nextMonthLastDate = new Date(
-                            temp.getFullYear(), temp.getMonth() + increment + 1, 0
-                        ).getDate();
-                        temp.setDate(Math.min(nextMonthLastDate, temp.getDate()));
-                    }
-
-                    temp[`set${type}`](temp[`get${type}`]() + increment);
-                    this[`${otherPanel}PanelDate`] = temp;
+                    const otherCurrent = new Date(this[`${otherPanel}PanelDate`]);
+                    otherCurrent[`set${type}`](otherCurrent[`get${type}`]() + increment);
+                    this[`${otherPanel}PanelDate`] = otherCurrent;
                 }
             },
             showYearPicker (panel) {
@@ -342,10 +332,7 @@
                 if (!this.splitPanels){
                     const otherPanel = panel === 'left' ? 'right' : 'left';
                     this[`${otherPanel}PanelDate`] = value;
-
-                    const increment = otherPanel === 'left' ? -1 : 1; // #3973
-
-                    this.changePanelDate(otherPanel, 'Month', increment, false);
+                    this.changePanelDate(otherPanel, 'Month', 1, false);
                 }
             },
             handleRangePick (val, type) {

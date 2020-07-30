@@ -150,8 +150,7 @@
         watch: {
             value (newVal) {
                 this.dates = newVal;
-                const panelDate = this.multiple ? this.dates[this.dates.length - 1] : (this.startDate || this.dates[0]);
-                this.panelDate = panelDate || new Date();
+                this.panelDate = this.startDate || (this.multiple ? this.dates[this.dates.length - 1] : this.dates[0]) || new Date();
             },
             currentView (currentView) {
                 this.$emit('on-selection-mode-change', currentView);
@@ -171,7 +170,7 @@
                 const isDifferentYear = date.getFullYear() !== this.panelDate.getFullYear();
                 const isDifferentMonth = isDifferentYear || date.getMonth() !== this.panelDate.getMonth();
                 if (isDifferentYear || isDifferentMonth){
-                    if (!this.multiple) this.panelDate = date;
+                    this.panelDate = date;
                 }
             }
         },

@@ -41,6 +41,7 @@
                 <template v-else>{{ enterButton }}</template>
             </div>
             <span class="kh-input-prefix" v-else-if="showPrefix"><slot name="prefix"><i class="kh-icon" :class="['kh-icon-' + prefix]" v-if="prefix"></i></slot></span>
+            <span v-if="showWordLimit" class="kh-input-word-count">{{currentValue.length}}/{{maxlength}}</span>
         </template>
         <textarea
             v-else
@@ -70,6 +71,7 @@
             @compositionend="handleComposition"
             @input="handleInput">
         </textarea>
+        <span v-if="showWordLimit" class="kh-input-word-count">{{currentValue.length}}/{{maxlength}}</span>
     </div>
 </template>
 <script>
@@ -174,6 +176,10 @@
             enterButton: {
                 type: [Boolean, String],
                 default: false
+            },
+            showWordLimit: {
+                type: [Boolean, String],
+                default: false
             }
         },
         data () {
@@ -195,7 +201,7 @@
                     `${prefixCls}-wrapper`,
                     {
                         [`${prefixCls}-wrapper-${this.size}`]: !!this.size,
-                        [`${prefixCls}-type`]: this.type,
+                        [`${prefixCls}-type-${this.type}`]: this.type,
                         [`${prefixCls}-group`]: this.prepend || this.append || (this.search && this.enterButton),
                         [`${prefixCls}-group-${this.size}`]: (this.prepend || this.append || (this.search && this.enterButton)) && !!this.size,
                         [`${prefixCls}-group-with-prepend`]: this.prepend,

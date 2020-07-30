@@ -22,10 +22,10 @@
             @keydown="resetInputState"
             @keydown.delete="handleInputDelete"
             @focus="onInputFocus"
-            @blur="onInputBlur"
+            @blur="onInputFocus"
 
             ref="input">
-        <Icon type="ios-close-circle" :class="[prefixCls + '-arrow']" v-if="resetSelect" @click.native.stop="onClear"></Icon>
+        <Icon type="ios-close" :class="[prefixCls + '-arrow']" v-if="resetSelect" @click.native.stop="onClear"></Icon>
         <Icon type="ios-arrow-down" :class="[prefixCls + '-arrow']" v-if="!resetSelect && !remote && !disabled"></Icon>
     </div>
 </template>
@@ -58,7 +58,7 @@
                 default: false
             },
             initialLabel: {
-                type: [String, Number, Array],
+                type: String,
             },
             values: {
                 type: Array,
@@ -146,12 +146,8 @@
             }
         },
         methods: {
-            onInputFocus(){
-                this.$emit('on-input-focus');
-            },
-            onInputBlur () {
-                if (!this.values.length) this.query = '';  // #5155
-                this.$emit('on-input-blur');
+            onInputFocus(e){
+                this.$emit(e.type === 'focus' ? 'on-input-focus' : 'on-input-blur');
             },
             removeTag (value) {
                 if (this.disabled) return false;
@@ -159,7 +155,6 @@
             },
             resetInputState () {
                 this.inputLength = this.$refs.input.value.length * 12 + 20;
-                this.$emit('on-keydown');
             },
             handleInputDelete () {
                 if (this.multiple && this.selectedMultiple.length && this.query === '') {

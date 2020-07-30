@@ -1,5 +1,6 @@
 <template>
     <div>
+        <Button @click="showConfirm">confirm</Button>
         <Button type="primary" @click="modal1 = true">Display dialog box</Button>
         <Modal
                 v-model="modal1"
@@ -145,6 +146,18 @@
             handleSpinShow () {
                 this.$Spin.show();
             },
+            showConfirm () {
+                this.$Modal.confirm({
+                    title: 'Title',
+                    content: '<p>Content of dialog</p><p>Content of dialog</p>',
+                    onOk: () => {
+                        this.$Message.info('Clicked ok');
+                    },
+                    onCancel: () => {
+                        this.$Message.info('Clicked cancel');
+                    }
+                });
+            }
         }
     }
 </script>
