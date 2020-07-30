@@ -2,7 +2,7 @@
     <div @click="onHeaderClick">
         <div class="kh-tag kh-tag-checked" v-for="item in selectedMultiple">
             <span class="kh-tag-text">{{ item.label }}</span>
-            <Icon type="ios-close-empty" @click.native.stop="removeTag(item)"></Icon>
+            <Icon type="ios-close" @click.native.stop="removeTag(item)"></Icon>
         </div>
         <span
             :class="singleDisplayClasses"

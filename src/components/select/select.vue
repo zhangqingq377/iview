@@ -610,7 +610,10 @@
             value(value){
                 const {getInitialValue, getOptionData, publicValue} = this;
 
-                if (value === '') this.values = [];
+                if (value === '') {
+                    this.values = [];
+                    this.query = '';
+                }
                 else if (JSON.stringify(value) !== JSON.stringify(publicValue)) {
                     this.$nextTick(() => this.values = getInitialValue().map(getOptionData).filter(Boolean));
                 }

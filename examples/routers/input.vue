@@ -139,9 +139,12 @@
         <!--<br><br>-->
         <!--<Input v-model="value" search enter-button="Search" style="width: 300px" @on-search="hs" />-->
     <!--</div>-->
-    <div style="width: 200px">
+    <div>
         <Input v-model="value7" type="textarea" :autosize="true" placeholder="Enter something..."></Input>
+        <Input v-model="value" maxlength="100" show-word-limit :autosize="true" placeholder="Enter something..."></Input>
+        <Input v-model="value11" maxlength="100" show-word-limit type="textarea" placeholder="Enter something..." style="width: 200px" />
     </div>
+
 </template>
 <script>
     export default {
