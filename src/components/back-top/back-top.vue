@@ -26,6 +26,10 @@
                 type: Number,
                 default: 30
             },
+            scrollId: {
+                type: String,
+                default: ''
+            },
             duration: {
                 type: Number,
                 default: 1000
@@ -39,14 +43,24 @@
         mounted () {
 //            window.addEventListener('scroll', this.handleScroll, false);
 //            window.addEventListener('resize', this.handleScroll, false);
-            on(window, 'scroll', this.handleScroll);
-            on(window, 'resize', this.handleScroll);
+            if (this.scrollId && document.getElementById(this.scrollId)) {
+                on(document.getElementById(this.scrollId), 'scroll', this.handleScroll);
+                on(document.getElementById(this.scrollId), 'resize', this.handleScroll);
+            } else {
+                on(window, 'scroll', this.handleScroll);
+                on(window, 'resize', this.handleScroll);
+            }
         },
         beforeDestroy () {
 //            window.removeEventListener('scroll', this.handleScroll, false);
 //            window.removeEventListener('resize', this.handleScroll, false);
-            off(window, 'scroll', this.handleScroll);
-            off(window, 'resize', this.handleScroll);
+            if (this.scrollId && document.getElementById(this.scrollId)) {
+                off(document.getElementById(this.scrollId), 'scroll', this.handleScroll);
+                off(document.getElementById(this.scrollId), 'resize', this.handleScroll);
+            } else {
+                off(window, 'scroll', this.handleScroll);
+                off(window, 'resize', this.handleScroll);
+            }
         },
         computed: {
             classes () {
@@ -69,12 +83,21 @@
         },
         methods: {
             handleScroll () {
-                this.backTop = window.pageYOffset >= this.height;
+                if (this.scrollId && document.getElementById(this.scrollId)) {
+                    this.backTop = document.getElementById(this.scrollId).scrollTop >= this.height;
+                } else this.backTop = window.pageYOffset >= this.height;
             },
             back () {
-                const sTop = document.documentElement.scrollTop || document.body.scrollTop;
-                scrollTop(window, sTop, 0, this.duration);
-                this.$emit('on-click');
+                if (this.scrollId && document.getElementById(this.scrollId)) {
+                    const sTop = document.getElementById(this.scrollId).scrollTop;
+                    scrollTop(document.getElementById(this.scrollId), sTop, 0, this.duration);
+                    this.$emit('on-click');
+                } else {
+                    const sTop = document.documentElement.scrollTop || document.body.scrollTop;
+                    scrollTop(window, sTop, 0, this.duration);
+                    this.$emit('on-click');
+                }
+
             }
         }
     };
